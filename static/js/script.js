@@ -71,7 +71,7 @@ let populateChatList = () => {
 	.sort((a, b) => mDate(a.time).subtract(b.time))
 	.forEach((msg) => {
 		let chat = {};
-		
+
 		chat.isGroup = msg.recvIsGroup;
 		chat.msg = msg;
 
@@ -193,7 +193,7 @@ let generateMessageArea = (elem, chatIndex) => {
 
 	DOM.messageAreaName.innerHTML = chat.name;
 	DOM.messageAreaPic.src = chat.isGroup ? chat.group.pic : chat.contact.pic;
-	
+
 	// Message Area details ("last seen ..." for contacts / "..names.." for groups)
 	if (chat.isGroup) {
 		let groupMembers = groupList.find(group => group.id === chat.group.id).members;
@@ -201,7 +201,7 @@ let generateMessageArea = (elem, chatIndex) => {
 				.filter(contact => groupMembers.indexOf(contact.id) !== -1)
 				.map(contact => contact.id === user.id ? "You" : contact.name)
 				.join(", ");
-		
+
 		DOM.messageAreaDetails.innerHTML = `${memberNames}`;
 	} else {
 		DOM.messageAreaDetails.innerHTML = `last seen ${mDate(chat.contact.lastSeen).lastSeenFormat()}`;
